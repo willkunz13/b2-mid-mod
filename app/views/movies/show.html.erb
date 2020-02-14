@@ -1,0 +1,9 @@
+<h1> <%= @movie.name %></h1>
+<p> <%= @movie.created %></p>
+<p> <%= @movie.genre %></p>
+<h3> Actors: </h3>
+<section id="Actors">
+<% @movie.actors.order(:name).each do |actor| %>
+	<%= actor.name %>		
+<% end %>
+</section>

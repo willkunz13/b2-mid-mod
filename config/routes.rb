@@ -4,5 +4,7 @@ Rails.application.routes.draw do
 
 	get '/actors/:id', to: 'actors#show'
 
-	get 'movies/:id', to: 'movies#show'
+	get '/movies/:id', to: 'movies#show'
+
+	patch '/movies/:movie_id/actors', to: 'movies_actors#create'
 end

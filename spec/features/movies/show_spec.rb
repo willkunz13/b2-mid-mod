@@ -23,7 +23,7 @@ RSpec.describe 'Movies show page', type: :feature do
 		end	
 	end
 	it "can get average age of the movies actors" do
-		 studio = Studio.create(name: "MGM")
+		studio = Studio.create(name: "MGM")
                 movie = Movie.create(name: "Spaceballs", created: "1987", genre: "Comedy", studio: studio)        
                 actor1 = Actor.create(name: "Rick Moranis", age: "66")
                 actor2 = Actor.create(name: "Mel Brooks", age: "93")
@@ -32,6 +32,21 @@ RSpec.describe 'Movies show page', type: :feature do
        		visit "/movies/#{movie.id}"
 		within("#Age") do
 			expect(page).to have_content("79.5")
+		end
+	end
+	it "can add an actor to movie" do
+		studio = Studio.create(name: "MGM")
+                movie = Movie.create(name: "Spaceballs", created: "1987", genre: "Comedy", studio: studio)
+                actor1 = Actor.create(name: "Rick Moranis", age: "66")
+                actor2 = Actor.create(name: "Mel Brooks", age: "93")
+		actor3 = Actor.create(name: "John Candy", age: "43")
+                movie.actors << actor1
+                movie.actors << actor2
+                visit "/movies/#{movie.id}"
+		fill_in "Name", with: "John Candy"
+		click_on "Add Actor"
+		within("#Actors") do
+			expect(page).to have_content("John Candy")
 		end
 	end
 end

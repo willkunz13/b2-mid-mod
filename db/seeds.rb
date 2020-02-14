@@ -6,3 +6,4 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 	studio = Studio.create(name: "MGM")
+	movie = Movie.create(name: "Spaceballs", created: "1987", genre: "Comedy", studio: studio)
